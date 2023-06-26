@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block stylesheets %}
-    {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    <title>Document</title>
-</head>
-<body>
-    <p class="text-x7">Hello</p>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+{% block body %}
+<main>
+    <h1 class="text-center text-orange-600 text-5xl">INSCRIPTION</h1>
+    <form method="post" class="form mx-auto w-3/4 border-2 border-black bg-white rounded-lg">
+        <section>
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" placeholder="Utilisateur205">
+        </section>
+        <section>
+            <label for="email">Adresse e-mail</label>
+            <input type="email" name="email" placeholder="email@site.com">
+        </section>
+        <section>
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" placeholder="*************">
+        </section>
+        <section>
+            <label for="password-confirm">Confirmation mot de passe</label>
+            <input type="password" name="password-confirm" placeholder="*************">
+        </section>
+        <section class="flex-row">
+            <input type="checkbox" name="terms">
+            <label for="terms">J’accepte les conditions d’utilisation</label>
+        </section>
+        <input type="submit" class="submit" value="Inscription">
+    </form>
+</main>
+{% endblock %}

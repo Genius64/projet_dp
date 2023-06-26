@@ -1,6 +1,13 @@
-body {
-    background-color: lightgray;
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
+
+body {
+    @apply bg-gray-300 text-3xl
+}
+body > * {
+    @apply px-8
+}
+.form > section{
+    @apply my-8 flex flex-col
 }
