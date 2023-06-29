@@ -7,5 +7,19 @@
         <h1>Accueil</h1>
         <label for="search">Recherche :</label>
         <input name="search" type="text" placeholder="#fantasy, #horreur, ect...">
+        <ul class="flex flex-wrap justify-center">
+            {% for game in games %}
+                {{% if {{games.rating_top}} == 5 %}
+                    <li class="w-64 mx-5 border-2 border-black bg-yellow-500 rounded-xl my-2">
+                        <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        <section class="text-center my-4 mx-2">
+                            {{ game.name }}</br>
+                            {{ game.rating_top }}</br>
+                            {{ game.released }}
+                        </section>
+                    </li>
+                {% endif %}}
+            {% endfor %}
+        </ul>
     </main>
 {% endblock %}
