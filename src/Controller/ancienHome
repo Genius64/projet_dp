@@ -1,0 +1,34 @@
+$url = 'https://api.rawg.io/api/games';
+
+        $client = new Client();
+        $response = $client->request('GET', $url, [
+            'query' => [
+                'key' => $apiKey,
+                //'genres' => 'indie',
+            ],'curl' => [
+                CURLOPT_SSL_VERIFYPEER => false,
+            ],
+        ]);
+        
+        $statusCode = $response->getStatusCode();
+        $content = $response->getBody()->getContents();
+        $games = json_decode($content, true);
+
+        // Requête distincte pour récupérer les genres
+        $genresResponse = $client->request('GET', 'https://api.rawg.io/api/genres', [
+            'query' => [
+                'key' => $apiKey,
+            ], 'curl' =>[
+                CURLOPT_SSL_VERIFYPEER => false,
+            ],
+        ]);
+
+        $genresContent = $genresResponse->getBody()->getContents();
+        $genres = json_decode($genresContent, true);
+
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
+            'status_code' => $statusCode,
+            'games' => $games['results'],
+            'genres' => $genres['results'],
+        ]);

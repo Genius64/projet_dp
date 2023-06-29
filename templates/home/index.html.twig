@@ -5,21 +5,38 @@
 {% block body %}
     <main>
         <h1>Accueil</h1>
-        <label for="search">Recherche :</label>
-        <input name="search" type="text" placeholder="#fantasy, #horreur, ect...">
+        <label for="genre">Recherche :</label>
+        <select name="genre">
+            <option>Tous les genres</option>
+            {% for genre in genres %}
+                <option value="{{genre.slug}}">{{genre.name}}</option>
+            {% endfor %}
+        <select>
+        <button class="border-black border-2 rounded-xl p-1 bg-white">Recherche</button>
+
+        <h2>Les mieux notés</h2>
         <ul class="flex flex-wrap justify-center">
-            {% for game in games %}
-                {{% if {{games.rating_top}} == 5 %}
-                    <li class="w-64 mx-5 border-2 border-black bg-yellow-500 rounded-xl my-2">
-                        <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
-                        <section class="text-center my-4 mx-2">
-                            {{ game.name }}</br>
-                            {{ game.rating_top }}</br>
-                            {{ game.released }}
-                        </section>
-                    </li>
-                {% endif %}}
+            {% for game in topRatedGames %}
+                <li class="w-64 mx-5 border-2 border-black bg-orange-500 rounded-xl my-2">
+                    <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
+                    {{ game.name }}</br>
+                    {{ game.released }}
+                </li>
             {% endfor %}
         </ul>
+
+        {% for genreSlug, games in gamesByGenre %}
+            <h2>{{ genreSlug }}</h2>
+            <ul class="flex flex-wrap justify-center">
+                {% for game in games %}
+                    <li class="w-64 mx-5 border-2 border-black bg-orange-500 rounded-xl my-2">
+                        <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        {{ game.name }}</br>
+                        {{ game.released }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        
     </main>
 {% endblock %}
