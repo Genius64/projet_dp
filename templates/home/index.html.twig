@@ -11,31 +11,44 @@
             {% for genre in genres %}
                 <option value="{{genre.slug}}">{{genre.name}}</option>
             {% endfor %}
-        <select>
+        </select>
         <button class="border-black border-2 rounded-xl p-1 bg-white">Recherche</button>
-
-        <h2>Les mieux notés</h2>
-        <ul class="flex flex-wrap justify-center">
-            {% for game in topRatedGames %}
-                <li class="w-64 mx-5 border-2 border-black bg-orange-500 rounded-xl my-2">
-                    <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
-                    {{ game.name }}</br>
-                    {{ game.released }}
-                </li>
-            {% endfor %}
-        </ul>
-
-        {% for genreSlug, games in gamesByGenre %}
-            <h2>{{ genreSlug }}</h2>
+        <section class="my-14">
+            <h2>Les mieux notés</h2>
             <ul class="flex flex-wrap justify-center">
-                {% for game in games %}
-                    <li class="w-64 mx-5 border-2 border-black bg-orange-500 rounded-xl my-2">
-                        <img class="w-full rounded-t-xl" src="{{ game.background_image }}" alt="{{ game.name }}">
-                        {{ game.name }}</br>
-                        {{ game.released }}
+                {% for game in topRatedGames %}
+                    <li class="w-64 mx-5 border-4 border-orange-500 bg-white rounded-xl my-2">
+                        <img class="w-full rounded-t-xl max-h-48" src="{{ game.background_image }}" alt="{{ game.name }}">
+                        <article class="m-4 text-center">
+                            <p class="font-bold">{{ game.name }}</p>
+                            <p class="my-3">{{ game.released }}</p>
+                            {% for i in 1..game.rating_top %}
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                            {% endfor %}
+                        </article>
                     </li>
                 {% endfor %}
             </ul>
+        </section>
+        
+        {% for genreSlug, games in gamesByGenre %}
+            <section class="my-14">
+                <h2>{{ genreSlug }}</h2>
+                <ul class="flex flex-wrap justify-center">
+                    {% for game in games %}
+                        <li class="w-64 mx-5 border-4 border-orange-500 bg-white rounded-xl my-2">
+                            <img class="w-full rounded-t-xl max-h-48" src="{{ game.background_image }}" alt="{{ game.name }}">
+                            <section class="m-4">
+                                <p class="font-bold">{{ game.name }}</p>
+                                <p class="my-3">{{ game.released }}</p>
+                                {% for i in 1..game.rating_top %}
+                                    <i class="fa-solid fa-star text-yellow-400"></i>
+                                {% endfor %}
+                            </section>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
         {% endfor %}
         
     </main>
