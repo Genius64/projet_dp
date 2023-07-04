@@ -26,7 +26,7 @@ label{
 .btn-white{
     @apply p-3 border-2 rounded-md bg-white border-red-400 font-semibold w-fit
 }
-.info{
+.info > input{
     @apply h-14 border-2 border-orange-400 rounded-lg pl-4
 }
 form{
