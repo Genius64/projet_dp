@@ -26,7 +26,7 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             // Redirigez ici après une inscription réussie
-            return $this->redirectToRoute('inscription_success');
+            return $this->redirectToRoute('connection');
         }
 
         return $this->render('inscription.html.twig', [

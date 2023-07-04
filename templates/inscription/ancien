@@ -3,7 +3,7 @@
 {% block body %}
 <main>
     <h1 class="text-center">INSCRIPTION</h1>
-    <form method="post" action="{{ path('inscription') }}" id="inscription">
+    <form method="post" id="inscription">
         <section>
             <label for="username">Nom d'utilisateur</label>
             <input class="info" type="text" name="username" placeholder="User205">
