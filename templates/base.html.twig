@@ -16,11 +16,18 @@
     <body>
     <header class="bg-yellow-500 pt-5">
         <nav class="border-b-2 border-black flex justify-between h-32">
-            <a href="#"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full"></img></a>
-            <section class="self-center flex-nowrap">
-                <a href="#" class="mr-[7vw] btn-white">Connexion</a>
-                <a href="#" class="btn-orange mx-[7vw]">Inscription</a>
-            </section>
+            <a href="{{ path('app_home') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full"></img></a>
+            {% if app.user %}
+                <section class="bg-red-700">
+                    <a href="{{ path('app_logout') }}"><img class="w-96" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg"></a>
+                    <a class="text-blue-500 bg-black underline " href="{{ path('app_logout') }}">Déconnexion</a>
+                </section>
+            {% else %}
+                <section class="self-center flex-nowrap">
+                    <a href="{{ path('app_login') }}" class="mr-[7vw] btn-white">Connexion</a>
+                    <a href="{{ path('register') }}" class="btn-orange mx-[7vw]">Inscription</a>
+                </section>
+            {% endif %}
         </nav>
     </header>
     {% block body %}{% endblock %}

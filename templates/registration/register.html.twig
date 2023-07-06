@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Search | inscription{% endblock %}
 
 {% block body %}
     <h1 class="text-center">INSCRIPTION</h1>
@@ -25,6 +25,6 @@
             {{ form_label(registrationForm.agreeTerms, "J’accepte les conditions d’utilisation")}}
         </section>
 
-        <button type="submit" class="btn-orange mb-7 self-center">Inscription</button>
+        <button type="submit" class="btn-orange mt-7 self-center">Inscription</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

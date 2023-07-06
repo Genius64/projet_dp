@@ -18,10 +18,10 @@ label{
     @apply mb-3
 }
 .btn-orange{
-    @apply p-3 border-2 rounded-md bg-red-400 border-black text-white font-semibold w-fit
+    @apply p-3 border-2 rounded-md bg-red-400 border-black text-white font-semibold w-fit hover:bg-red-500
 }
 .btn-white{
-    @apply p-3 border-2 rounded-md bg-white border-red-400 font-semibold w-fit
+    @apply p-3 border-2 rounded-md bg-white border-orange-400 font-semibold w-fit hover:bg-red-100
 }
 .info-div > input, .info {
     @apply h-14 border-2 border-orange-400 rounded-lg pl-4 w-full
@@ -33,5 +33,5 @@ form > section{
     @apply my-4 flex flex-col
 }
 input[type=checkbox]{
-    @apply w-8 mr-6
+    @apply w-6 mr-6
 }
