@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search | {{username}}{% endblock %}
+{% block title %}Search | {{ app.user.username }}{% endblock %}
 
 {% block body %}
     <section>
         <div>
-            <p>{{username}}</p>
-            <p>{{email}}</p>
+            <p>{{ app.user.username }}</p>
+            <p>{{app.user.email}}</p>
         </div>
         <div>
-            <input type='text' value='{{username}}'>
-            <input type='email' value='{{email}}'>
-            <input type='password' value='{{password}}'>
+            <input type='text' placeholder='{{ app.user.username }}'>
+            <input type='email' placeholder='{{app.user.email}}'>
+            <input type='password' value='Password'>
         </div>
     </section>
 {% endblock %}

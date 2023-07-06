@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager/*, UserAuthenticatorInterface $userAuthenticatorInterface, AppAuthenticator $appAuthenticator*/): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -35,7 +35,6 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_home');
-            //return $userAuthenticatorInterface->authenticateUser($user, $appAuthenticator, $request);
         }
 
         return $this->render('registration/register.html.twig', [

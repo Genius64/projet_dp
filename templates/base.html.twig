@@ -14,22 +14,21 @@
         {% endblock %}
     </head>
     <body>
-    <header class="bg-yellow-500 pt-5">
-        <nav class="border-b-2 border-black flex justify-between h-32">
-            <a href="{{ path('app_home') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full"></img></a>
+    <header class="bg-yellow-500">
+        <nav class="border-b-2 border-black flex justify-between flex-nowrap py-2 h-48">
+            <a href="{{ path('app_home') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full object-contain"></img></a>
             {% if app.user %}
-                <section class="bg-red-700">
-                    <a href="{{ path('app_logout') }}"><img class="w-96" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg"></a>
-                    <a class="text-blue-500 bg-black underline " href="{{ path('app_logout') }}">Déconnexion</a>
+                <section class="flex self-center flex-nowrap items-center flex-col">
+                    <a href="{{ path('app_profile') }}"><img class="object-cover w-32 h-32 border-black border-2" alt="profile" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg"></a>
+                    <a class="text-blue-500 underline" href="{{ path('app_logout') }}">Déconnexion</a>
                 </section>
             {% else %}
                 <section class="self-center flex-nowrap">
-                    <a href="{{ path('app_login') }}" class="mr-[7vw] btn-white">Connexion</a>
-                    <a href="{{ path('register') }}" class="btn-orange mx-[7vw]">Inscription</a>
+                    <a href="{{ path('app_login') }}" class="mr-7 btn-white">Connexion</a>
+                    <a href="{{ path('register') }}" class="btn-orange mx-7">Inscription</a>
                 </section>
             {% endif %}
         </nav>
     </header>
     {% block body %}{% endblock %}
-    </body>
 </html>
