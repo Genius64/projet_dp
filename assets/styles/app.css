@@ -35,3 +35,6 @@ form > section{
 input[type=checkbox]{
     @apply w-6 mr-6
 }
+.imgProfileView{
+    @apply w-80 h-80 border-black border-2 object-cover
+}

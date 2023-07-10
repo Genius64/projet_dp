@@ -16,11 +16,11 @@
     <body>
     <header class="bg-yellow-500">
         <nav class="border-b-2 border-black flex justify-between flex-nowrap py-2 h-48">
-            <a href="{{ path('app_home') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full object-contain"></img></a>
+            <a href="{{ path('app_home') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo" class="h-full object-contain"></a>
             {% if app.user %}
                 <section class="flex self-center flex-nowrap items-center flex-col">
                     <a href="{{ path('app_profile') }}"><img class="object-cover w-32 h-32 border-black border-2" alt="profile" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg"></a>
-                    <a class="text-blue-500 underline" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a class="text-blue-600 underline" href="{{ path('app_logout') }}">Déconnexion</a>
                 </section>
             {% else %}
                 <section class="self-center flex-nowrap">
