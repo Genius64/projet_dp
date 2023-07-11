@@ -2,13 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfileController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
@@ -34,17 +43,22 @@ class ProfileController extends AbstractController
 
         // Vérifiez si un nouveau fichier de profile_picture a été téléchargé
         if ($profilePictureFile) {
-            // Gérez le téléchargement du fichier et l'enregistrement dans votre système de fichiers
-            // Génération d'un nom de fichier unique en utilisant la date et l'heure actuelles
-            $newFilename = '../../public/assets/images/profile_picture'.date('Ymd_His') . '_' . uniqid() . '.' . $profilePictureFile->guessExtension();// Générez un nom de fichier unique
-            // Code pour déplacer le fichier téléchargé vers votre emplacement de stockage et enregistrer le chemin d'accès dans la base de données
-            $user->setProfilePicture($newFilename);
+            $profilePicture = file_get_contents($profilePictureFile->getPathname());
+            $user->setProfilePicture($profilePicture);
         }
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
 
         return $this->redirectToRoute('app_profile');
+    }
+
+    #[Route('/profile/picture/{id}', name: 'app_profile_picture')]
+    public function showProfilePicture(User $user): Response
+    {
+        $response = new Response($user->getProfilePicture());
+        $response->headers->set('Content-Type', 'image/*');
+
+        return $response;
     }
 }
