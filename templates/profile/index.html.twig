@@ -4,23 +4,21 @@
 
 {% block body %}
     <h1 class="text-center">{{ app.user.username }}</h1>
-    <section class="flex mx-auto w-3/4 border-2 border-black bg-white rounded-lg p-8">
-        {% if app.user.profilePicture %}
-            <img class="imgProfileView" src="{{ path('app_profile_picture', {'id': app.user.id}) }}" alt="profile">
-        {% else %}
-            <img class="imgProfileView" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" alt="profile">
-        {% endif %}
-        <article class="m-auto">
-            <p>{{ app.user.username }}</p>
-            <p>{{ app.user.email }}</p>
-        </article>
-    </section>
     
     <form method="post" action="{{ path('app_profile_update') }}" enctype="multipart/form-data">
-        <input type="text" name="username" value="{{ app.user.username }}" required>
-        <input type="email" name="email" value="{{ app.user.email }}" required>
-        <textarea name="description">{{ app.user.description }}</textarea>
-        <input type="file" name="profile_picture" accept="image/*">
-        <button type="submit">Enregistrer les modifications</button>
+        <section class="flex my-4">
+            {% if app.user.profilePicture %}
+                <img class="imgProfileView" src="{{ path('app_profile_picture', {'id': app.user.id}) }}" alt="profile">
+            {% else %}
+                <img class="imgProfileView" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" alt="profile">
+            {% endif %}
+            <article class="self-center justify-self-center w-min">
+                <input class="bg-white text-5xl" type="text" name="username" value="{{ app.user.username }}" required>
+                <input type="email" name="email" value="{{ app.user.email }}" required>
+            </article>
+        </section>
+        <input class="my-4" type="file" name="profile_picture" accept="image/*">
+        <textarea class="my-4" name="description" placeholder="facultatif ...">{{ app.user.description }}</textarea>
+        <button class="btn-white self-center my-4" type="submit">Enregistrer les modifications</button>
     </form>
 {% endblock %}

@@ -8,19 +8,19 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        <section>
+        <section class="sectionForm">
             {{ form_label(registrationForm.username, "Nom d'utilisateur")}}
             <div class="info-div">{{ form_widget(registrationForm.username) }}</div>
         </section>
-        <section>
+        <section class="sectionForm">
             {{ form_label(registrationForm.email, 'Email') }}
             <div class="info-div">{{ form_widget(registrationForm.email) }}</div>
         </section>
-        <section>
+        <section class="sectionForm">
             {{ form_label(registrationForm.plainPassword, "Mot de passe")}}
             <div class="info-div">{{ form_widget(registrationForm.plainPassword) }}</div>
         </section>
-        <section class="flex-row mt-0">
+        <section class="sectionForm flex-row mt-0">
             {{ form_widget(registrationForm.agreeTerms) }}
             {{ form_label(registrationForm.agreeTerms, "J’accepte les conditions d’utilisation")}}
         </section>
