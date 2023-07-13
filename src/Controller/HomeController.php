@@ -4,18 +4,28 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use GuzzleHttp\Client;
 
 class HomeController extends AbstractController
 {
+    private $parameterBag;
+
+    public function __construct(ParameterBagInterface $parameterBag)
+    {
+        $this->parameterBag = $parameterBag;
+    }
+
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        $apiKey = 'ab38bfe090bf476b84e7454698452d66';
-        $url = 'https://api.rawg.io/api/games';
-        $genresUrl = 'https://api.rawg.io/api/genres';
+        // Récupération des clés et URL de l'API à partir des paramètres du conteneur
+        $apiKey = $this->parameterBag->get('my_api.api_key');
+        $url = $this->parameterBag->get('my_api.base_url').'/games';
+        $genresUrl = $this->parameterBag->get('my_api.base_url').'/genres';
 
+        // Initialisation du client HTTP Guzzle
         $client = new Client();
 
         // Récupérer les jeux les mieux notés
@@ -59,6 +69,7 @@ class HomeController extends AbstractController
             $gamesByGenre[$genreSlug] = $genreGames;
         }
 
+        // Rendre la vue Twig avec les données récupérées
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'topRatedGames' => $topRatedGames,

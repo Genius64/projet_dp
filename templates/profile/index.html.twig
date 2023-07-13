@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search | {{ app.user.username }}{% endblock %}
+{% block title %}Search|{{ app.user.username }}{% endblock %}
 
 {% block body %}
     <h1 class="text-center">{{ app.user.username }}</h1>
@@ -12,9 +12,9 @@
             {% else %}
                 <img class="imgProfileView" src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg" alt="profile">
             {% endif %}
-            <article class="self-center justify-self-center w-min">
-                <input class="bg-white text-5xl" type="text" name="username" value="{{ app.user.username }}" required>
-                <input type="email" name="email" value="{{ app.user.email }}" required>
+            <article class="self-center justify-self-center">
+                <input class="bg-white text-5xl w-full :focus[]" type="text" name="username" value="{{ app.user.username }}" required>
+                <input class="w-full" type="email" name="email" value="{{ app.user.email }}" required>
             </article>
         </section>
         <input class="my-4" type="file" name="profile_picture" accept="image/*">
